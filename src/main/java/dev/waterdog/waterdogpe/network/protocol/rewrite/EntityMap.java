@@ -127,6 +127,8 @@ public class EntityMap implements BedrockPacketHandler {
         return rewriteId(packet.getRuntimeEntityId(), packet::setRuntimeEntityId);
     }
 
+
+
     @Override
     public PacketSignal handle(AddPlayerPacket packet) {
         PacketSignal signal0 = rewriteId(packet.getRuntimeEntityId(), packet::setRuntimeEntityId);
@@ -233,6 +235,8 @@ public class EntityMap implements BedrockPacketHandler {
         return PacketSignal.UNHANDLED;
     }
 
+
+
     @Override
     public PacketSignal handle(AnimatePacket packet) {
         return rewriteId(packet.getRuntimeEntityId(), packet::setRuntimeEntityId);
@@ -319,6 +323,16 @@ public class EntityMap implements BedrockPacketHandler {
     @Override
     public PacketSignal handle(ClientCheatAbilityPacket packet) {
         return rewriteId(packet.getUniqueEntityId(), packet::setUniqueEntityId);
+    }
+
+    @Override
+    public PacketSignal handle(PlayerUpdateEntityOverridesPacket packet) {
+        return rewriteId(packet.getEntityUniqueId(), packet::setEntityUniqueId);
+    }
+
+    @Override
+    public PacketSignal handle(LevelSoundEventPacket packet) {
+        return rewriteId(packet.getEntityUniqueId(), packet::setEntityUniqueId);
     }
 
     @Override
