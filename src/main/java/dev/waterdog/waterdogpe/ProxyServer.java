@@ -44,6 +44,7 @@ import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import dev.waterdog.waterdogpe.plugin.PluginManager;
 import dev.waterdog.waterdogpe.scheduler.WaterdogScheduler;
 import dev.waterdog.waterdogpe.security.SecurityManager;
+import dev.waterdog.waterdogpe.utils.CommandStringHelper;
 import dev.waterdog.waterdogpe.utils.ConfigurationManager;
 import dev.waterdog.waterdogpe.utils.ThreadFactoryBuilder;
 import dev.waterdog.waterdogpe.utils.bstats.Metrics;
@@ -369,12 +370,13 @@ public class ProxyServer {
         return this.dispatchCommand(player, message.substring(this.commandMap.getCommandPrefix().length()));
     }
 
+
+
     public boolean dispatchCommand(CommandSender sender, String message) {
         if (message.trim().isEmpty()) {
             return false;
         }
-
-        String[] args = message.split(" ");
+        String[] args = CommandStringHelper.parseQuoteAware(message);
         if (args.length < 1) {
             return false;
         }
