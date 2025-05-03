@@ -50,7 +50,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     private final ProxyServer proxy;
 
     private final ExpiringMap<InetAddress, QuerySession> querySessions = ExpiringMap.builder()
-            .expirationListener(this::onQueryExpired)
+            .asyncExpirationListener(this::onQueryExpired)
             .expiration(60, TimeUnit.SECONDS)
             .build();
 
