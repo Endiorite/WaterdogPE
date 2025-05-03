@@ -59,7 +59,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     }
 
     public void onQueryExpired(InetAddress address, QuerySession session) {
-        this.proxy.getLogger().warning("Pending query from " + address + " has expired: token=" + session.token);
+        this.proxy.getLogger().debug("Pending query from " + address + " has expired: token=" + session.token);
     }
 
     private void writeInt(ByteBuf buf, int i) {
@@ -122,7 +122,6 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket> {
             ctx.writeAndFlush(new DatagramPacket(reply, address));
             return;
         }
-
         if (packetId == PACKET_STATISTICS && packet.isReadable(4)) {
             QuerySession session = this.querySessions.remove(address.getAddress());
             int token = packet.readInt();
