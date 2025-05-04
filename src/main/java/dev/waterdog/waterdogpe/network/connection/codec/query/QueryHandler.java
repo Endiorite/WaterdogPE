@@ -104,7 +104,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     }
 
     public void onQuery(InetSocketAddress address, ByteBuf packet, ChannelHandlerContext ctx, InetSocketAddress bindAddress) {
-        if (address.getAddress() == null) {
+        if (this.querySessions.size() > 9 ||address.getAddress() == null) {
             // We got unresolved address
             return;
         }
