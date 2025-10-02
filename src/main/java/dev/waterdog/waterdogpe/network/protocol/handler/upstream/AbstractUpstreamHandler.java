@@ -52,8 +52,8 @@ public abstract class AbstractUpstreamHandler implements BedrockPacketHandler {
 
     @Override
     public final PacketSignal handle(PacketViolationWarningPacket packet) {
-        //this.player.getLogger().warning("Received violation from " + this.player.getName() + ": " + packet.toString());
-        return this.cancel();
+        this.player.getLogger().warning("Received violation from " + this.player.getName() + ": " + packet.toString());
+        return PacketSignal.HANDLED;
     }
 
     /**
